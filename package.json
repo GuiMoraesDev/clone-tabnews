@@ -9,6 +9,9 @@
     "lint:fix": "prettier --write ."
   },
   "keywords": [],
+  "engines": {
+    "node": "22.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
