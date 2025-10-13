@@ -17,6 +17,11 @@
         "name": "next"
       }
     ],
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@models/*": ["./src/models/*"],
+      "@infra/*": ["./src/infra/*"]
+    },
     "target": "ES2017"
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
