@@ -1,3 +1,7 @@
+import { databaseModel } from "@models/database";
+
 export async function GET() {
-  return Response.json({ status: "ok" });
+  const result = await databaseModel.query("SELECT 1 + 1;");
+
+  return Response.json({ status: result });
 }
