@@ -1,7 +1,5 @@
-import { databaseModel } from "@models/database";
-
 export async function GET() {
-  const result = await databaseModel.query("SELECT 1 + 1;");
+  const updatedAt = new Date().toISOString();
 
-  return Response.json({ status: result });
+  return Response.json({ status: "healthy", updated_at: updatedAt });
 }
