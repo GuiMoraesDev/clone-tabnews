@@ -14,15 +14,16 @@ const query = async (
 
   await client.connect();
 
-  client.on("error", (err) => {
-    console.error("something bad has happened!", err.stack);
-  });
-
-  const result = await client.query(queryTextOrConfig, values);
-
-  await client.end();
-
-  return result;
+  try {
+    const result = await client.query(queryTextOrConfig, values);
+    return result;
+  } catch (error) {
+    client.on("error", async (err) => {
+      console.error("something bad has happened!", err.stack);
+    });
+  } finally {
+    await client.end();
+  }
 };
 
 export const databaseModel = {
