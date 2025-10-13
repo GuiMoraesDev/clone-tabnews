@@ -18,9 +18,7 @@ const query = async (
     const result = await client.query(queryTextOrConfig, values);
     return result;
   } catch (error) {
-    client.on("error", async (err) => {
-      console.error("something bad has happened!", err.stack);
-    });
+    console.error("something bad has happened!", error);
   } finally {
     await client.end();
   }
