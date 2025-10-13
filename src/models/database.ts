@@ -1,8 +1,8 @@
 import { Client } from "pg";
 
 const query = async (
-  queryTextOrConfig: Parameters<Client["query"]>[0],
-  values?: Parameters<Client["query"]>[1],
+  queryTextOrConfig: string,
+  values?: string[] | number[] | boolean[],
 ) => {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
@@ -13,6 +13,10 @@ const query = async (
   });
 
   await client.connect();
+
+  client.on("error", (err) => {
+    console.error("something bad has happened!", err.stack);
+  });
 
   const result = await client.query(queryTextOrConfig, values);
 
