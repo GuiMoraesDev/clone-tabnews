@@ -5,7 +5,9 @@
   "main": "index.js",
   "packageManager": "pnpm@10.18.2",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev:database": "docker compose -f ./src/infra/compose.yaml up -d",
+    "dev:web-client": "next dev --turbopack",
+    "dev": "pnpm dev:database && pnpm dev:web-client",
     "build": "next build",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
