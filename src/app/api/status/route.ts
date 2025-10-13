@@ -16,13 +16,13 @@ export async function GET() {
 
   const databaseActivities = await databaseModel.query(
     `
-    SELECT *
+    SELECT COUNT(*)::int
     FROM pg_stat_activity
     WHERE datname = $1;
   `,
     [process.env.POSTGRES_DB || "postgres"],
   );
-  const databaseOpenedConnectionsValue = databaseActivities.rowCount;
+  const databaseOpenedConnectionsValue = databaseActivities.rows[0]?.count;
 
   return Response.json({
     status: "healthy",
