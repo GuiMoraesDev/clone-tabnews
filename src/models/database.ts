@@ -12,13 +12,13 @@ const query = async (
     password: process.env.POSTGRES_PASSWORD,
   });
 
-  await client.connect();
-
   try {
+    await client.connect();
     const result = await client.query(queryTextOrConfig, values);
     return result;
   } catch (error) {
     console.error("something bad has happened!", error);
+    throw error;
   } finally {
     await client.end();
   }
