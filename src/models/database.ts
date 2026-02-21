@@ -7,7 +7,7 @@ const getSSLValues = () => {
     };
   }
 
-  return process.env.NODE_ENV === "production" ? true : true;
+  return process.env.NODE_ENV === "production";
 };
 
 const query = async (
